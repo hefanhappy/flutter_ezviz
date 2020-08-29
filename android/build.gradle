@@ -1,0 +1,46 @@
+group 'com.chuanjinet.flutterEzviz'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    dependencies {
+        /*萤石SDK核心模块，必须依赖*/
+        implementation 'com.ezviz.sdk:ezviz-sdk:4.13.0'
+
+        /*其它三方依赖*/
+        implementation fileTree(include: ['*.jar'], dir: 'libs')
+        implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+        implementation 'com.android.support:appcompat-v7:28.0.0'
+        implementation 'com.android.support:cardview-v7:28.0.0'
+    }
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+}
